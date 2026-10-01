@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AskRouteImport } from './routes/ask'
+import { Route as CasesRouteImport } from './routes/cases'
+import { Route as ConstitutionRouteImport } from './routes/constitution'
+import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as LawsRouteImport } from './routes/laws'
+import { Route as ProceduresRouteImport } from './routes/procedures'
+import { Route as RightsRouteImport } from './routes/rights'
+import { Route as SavedRouteImport } from './routes/saved'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AskRoute = AskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesRoute = CasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConstitutionRoute = ConstitutionRouteImport.update({
+  id: '/constitution',
+  path: '/constitution',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LawsRoute = LawsRouteImport.update({
+  id: '/laws',
+  path: '/laws',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProceduresRoute = ProceduresRouteImport.update({
+  id: '/procedures',
+  path: '/procedures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RightsRoute = RightsRouteImport.update({
+  id: '/rights',
+  path: '/rights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SavedRoute = SavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
+  '/cases': typeof CasesRoute
+  '/constitution': typeof ConstitutionRoute
+  '/documents': typeof DocumentsRoute
+  '/laws': typeof LawsRoute
+  '/procedures': typeof ProceduresRoute
+  '/rights': typeof RightsRoute
+  '/saved': typeof SavedRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
+  '/cases': typeof CasesRoute
+  '/constitution': typeof ConstitutionRoute
+  '/documents': typeof DocumentsRoute
+  '/laws': typeof LawsRoute
+  '/procedures': typeof ProceduresRoute
+  '/rights': typeof RightsRoute
+  '/saved': typeof SavedRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
+  '/cases': typeof CasesRoute
+  '/constitution': typeof ConstitutionRoute
+  '/documents': typeof DocumentsRoute
+  '/laws': typeof LawsRoute
+  '/procedures': typeof ProceduresRoute
+  '/rights': typeof RightsRoute
+  '/saved': typeof SavedRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ask'
+    | '/cases'
+    | '/constitution'
+    | '/documents'
+    | '/laws'
+    | '/procedures'
+    | '/rights'
+    | '/saved'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ask'
+    | '/cases'
+    | '/constitution'
+    | '/documents'
+    | '/laws'
+    | '/procedures'
+    | '/rights'
+    | '/saved'
+    | '/api/chat'
+  id:
+    | '__root__'
+    | '/'
+    | '/ask'
+    | '/cases'
+    | '/constitution'
+    | '/documents'
+    | '/laws'
+    | '/procedures'
+    | '/rights'
+    | '/saved'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AskRoute: typeof AskRoute
+  CasesRoute: typeof CasesRoute
+  ConstitutionRoute: typeof ConstitutionRoute
+  DocumentsRoute: typeof DocumentsRoute
+  LawsRoute: typeof LawsRoute
+  ProceduresRoute: typeof ProceduresRoute
+  RightsRoute: typeof RightsRoute
+  SavedRoute: typeof SavedRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ask': {
+      id: '/ask'
+      path: '/ask'
+      fullPath: '/ask'
+      preLoaderRoute: typeof AskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases': {
+      id: '/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/constitution': {
+      id: '/constitution'
+      path: '/constitution'
+      fullPath: '/constitution'
+      preLoaderRoute: typeof ConstitutionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/laws': {
+      id: '/laws'
+      path: '/laws'
+      fullPath: '/laws'
+      preLoaderRoute: typeof LawsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/procedures': {
+      id: '/procedures'
+      path: '/procedures'
+      fullPath: '/procedures'
+      preLoaderRoute: typeof ProceduresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rights': {
+      id: '/rights'
+      path: '/rights'
+      fullPath: '/rights'
+      preLoaderRoute: typeof RightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/saved': {
+      id: '/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof SavedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AskRoute: AskRoute,
+  CasesRoute: CasesRoute,
+  ConstitutionRoute: ConstitutionRoute,
+  DocumentsRoute: DocumentsRoute,
+  LawsRoute: LawsRoute,
+  ProceduresRoute: ProceduresRoute,
+  RightsRoute: RightsRoute,
+  SavedRoute: SavedRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
