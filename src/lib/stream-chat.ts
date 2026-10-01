@@ -1,13 +1,12 @@
 export async function streamChat(opts: {
   messages: { role: "user" | "assistant"; content: string }[];
   language: string; state: string; groqKey?: string | undefined; mode?: "qa" | "draft" | "analyze" | "authority" | "timeline";
-  attachment?: { name: string; mediaType: string; data: string } | undefined;
   signal?: AbortSignal | undefined; onDelta: (t: string) => void; onProvider?: (p: string) => void;
 }) {
   const res = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages: opts.messages, language: opts.language, state: opts.state, groqKey: opts.groqKey, mode: opts.mode, attachment: opts.attachment }),
+    body: JSON.stringify({ messages: opts.messages, language: opts.language, state: opts.state, groqKey: opts.groqKey, mode: opts.mode }),
     signal: opts.signal ?? null,
   });
   if (!res.ok || !res.body) throw new Error((await res.text()) || "Request failed");
