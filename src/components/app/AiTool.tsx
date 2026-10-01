@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { VerifyNotice } from "@/components/app/AppShell";
 import { CopyButton, downloadText } from "@/components/app/CopyButton";
-import { addSaved, HIGH_RISK, useSettings } from "@/lib/settings";
+import { saveAnswer, HIGH_RISK, useSettings } from "@/lib/settings";
 import { streamChat } from "@/lib/stream-chat";
 
 type Mode = "analyze" | "authority" | "timeline";
@@ -101,7 +101,7 @@ export function AiTool({ mode, placeholder, chips, allowFile, buildPrompt, extra
               <div className="mt-3 flex flex-wrap gap-2">
                 <CopyButton text={out} />
                 <Button variant="outline" size="sm" onClick={() => downloadText(`nyayasetu-${mode}.txt`, out)}><Download className="mr-1 h-4 w-4" /> Download</Button>
-                <Button variant="outline" size="sm" onClick={() => { addSaved({ question: input || att?.name || mode, answer: out }); toast.success("Saved"); }}><Bookmark className="mr-1 h-4 w-4" /> Save</Button>
+                <Button variant="outline" size="sm" onClick={() => { saveAnswer({ question: input || att?.name || mode, answer: out, state: s.state, language: s.language }); toast.success("Saved"); }}><Bookmark className="mr-1 h-4 w-4" /> Save</Button>
               </div>
             </>
           )}
