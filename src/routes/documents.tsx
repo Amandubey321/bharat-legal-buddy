@@ -28,7 +28,7 @@ const DISCLAIMER = "\n\n---\nDISCLAIMER: This draft was generated for general in
 
 function DocumentsPage() {
   const s = useSettings();
-  const [slug, setSlug] = useState(TEMPLATES[0].slug);
+  const [slug, setSlug] = useState("rti");
   const [values, setValues] = useState<Record<string, string>>({});
   const [aiText, setAiText] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);

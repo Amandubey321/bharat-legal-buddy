@@ -12,7 +12,7 @@ import { HIGH_RISK, indianKanoon, saveAnswer, useSettings } from "@/lib/settings
 import { streamChat } from "@/lib/stream-chat";
 
 export const Route = createFileRoute("/ask")({
-  validateSearch: (s: Record<string, unknown>): { q?: string } => (typeof s.q === "string" ? { q: s.q } : {}),
+  validateSearch: (s: Record<string, unknown>): { q?: string } => (typeof s['q'] === "string" ? { q: s['q'] as string } : {}),
   head: () => ({
     meta: [
       { title: "Ask AI — Indian legal questions answered | NyayaSetu" },
