@@ -114,6 +114,21 @@ export const LAWS: LawSection[] = [
   // Motor Vehicles
   { act: "Motor Vehicles Act, 1988", short: "MV Act", section: "185", title: "Drunk driving", text: "Driving with blood alcohol exceeding 30 mg per 100 ml (or under drugs) is punishable.", category: "Traffic" },
   { act: "Motor Vehicles Act, 1988", short: "MV Act", section: "130", title: "Duty to produce licence", text: "Driver must produce licence and documents on demand by an authorised officer; documents in DigiLocker/mParivahan are accepted.", category: "Traffic" },
+  { act: "Motor Vehicles Act, 1988", short: "MV Act", section: "129", title: "Helmet compulsory", text: "Every person driving or riding on a two-wheeler must wear protective headgear (helmet).", category: "Traffic" },
+  { act: "Motor Vehicles Act, 1988", short: "MV Act", section: "184", title: "Dangerous driving", text: "Driving dangerously, using a mobile phone while driving, or red-light jumping is punishable with fine and/or imprisonment.", category: "Traffic" },
+  { act: "Motor Vehicles Act, 1988", short: "MV Act", section: "166", title: "Compensation for accident victims", text: "Victim or family of a road accident can claim compensation before the Motor Accident Claims Tribunal (MACT).", category: "Traffic" },
+  // Family & civil
+  { act: "Hindu Marriage Act, 1955", short: "HMA", section: "13", title: "Divorce", text: "Grounds for divorce include cruelty, desertion (2 years), adultery, conversion, mental disorder; mutual-consent divorce under S. 13B after one year of separation.", category: "Property" },
+  { act: "Special Marriage Act, 1954", short: "SMA", section: "4-16", title: "Civil / inter-faith marriage", text: "Any two persons can marry under this Act regardless of religion, after a 30-day notice to the Marriage Officer.", category: "Property" },
+  { act: "Dowry Prohibition Act, 1961", short: "DP Act", section: "3-4", title: "Giving or demanding dowry", text: "Giving, taking or demanding dowry is punishable; the law applies to both sides.", category: "Women & Child" },
+  { act: "Protection of Women from Domestic Violence Act, 2005", short: "PWDVA", section: "18-20", title: "Protection, residence and monetary orders", text: "Magistrate can pass protection orders, residence orders (right to stay in the shared household), and monetary reliefs including maintenance and compensation.", category: "Women & Child" },
+  { act: "SC/ST (Prevention of Atrocities) Act, 1989", short: "SC/ST Act", section: "3", title: "Atrocities against SC/ST persons", text: "Lists offences against members of Scheduled Castes and Scheduled Tribes, including insults in public view, land grabbing and social/economic boycott; anticipatory bail is generally barred.", category: "Police & FIR" },
+  // Labour
+  { act: "Minimum Wages Act, 1948", short: "MW Act", section: "12", title: "Payment of minimum wages", text: "Employer must pay at least the minimum wage fixed by the government for scheduled employment; paying less is an offence.", category: "Employment" },
+  { act: "Payment of Wages Act, 1936", short: "PW Act", section: "5", title: "Timely payment of wages", text: "Wages must be paid before the 7th (or 10th, for larger establishments) of the following month; deductions are restricted.", category: "Employment" },
+  { act: "Employees' Provident Funds Act, 1952", short: "EPF", section: "6", title: "PF contribution", text: "Employer and employee each contribute (generally 12% of wages) to the provident fund for establishments with 20+ employees; check balance via UMANG/EPFO portal.", category: "Employment" },
+  { act: "Industrial Disputes Act, 1947", short: "ID Act", section: "25F", title: "Retrenchment conditions", text: "A workman with one year of service cannot be retrenched without one month's notice or pay in lieu, retrenchment compensation, and notice to the government.", category: "Employment" },
+  { act: "Transfer of Property Act, 1882", short: "TPA", section: "106", title: "Notice to quit (tenancy)", text: "A month-to-month lease can generally be terminated by 15 days' notice; a yearly lease by 6 months' notice, unless the agreement says otherwise.", category: "Property" },
 ];
 
 export type RightsCategory = { slug: string; name: string; icon: string; summary: string; rights: string[]; lawCategory: string; queries: string[] };
@@ -162,4 +177,16 @@ export const CASES: CaseLaw[] = [
   { name: "Navtej Singh Johar v. Union of India", year: "2018", court: "Supreme Court", topic: "Equality", holding: "Decriminalised consensual same-sex relations between adults." },
   { name: "Joseph Shine v. Union of India", year: "2018", court: "Supreme Court", topic: "Women", holding: "Struck down the offence of adultery as unconstitutional." },
   { name: "Satender Kumar Antil v. CBI", year: "2022", court: "Supreme Court", topic: "Bail", holding: "Issued guidelines on bail and on avoiding unnecessary arrests." },
+  { name: "A.K. Gopalan v. State of Madras", year: "1950", court: "Supreme Court", topic: "Life & Liberty", holding: "Early case on preventive detention and personal liberty under Article 21." },
+  { name: "S.R. Bommai v. Union of India", year: "1994", court: "Supreme Court", topic: "Constitution", holding: "President's Rule under Article 356 is subject to judicial review; secularism is part of the basic structure." },
+  { name: "Common Cause v. Union of India", year: "1996", court: "Supreme Court", topic: "Police & FIR", holding: "Court can order compensation for illegal detention and abuse of process." },
+  { name: "Joginder Kumar v. State of U.P.", year: "1994", court: "Supreme Court", topic: "Arrest", holding: "Arrest must be justified; arrestee has the right to have a friend or relative informed." },
+  { name: "Siddharth v. State of Maharashtra", year: "2021", court: "Supreme Court", topic: "Arrest", holding: "Courts should not insist on arrest when the accused cooperates with investigation." },
+  { name: "Mohd. Salimullah v. Union of India", year: "2021", court: "Supreme Court", topic: "Equality", holding: "Application of refugee and non-refoulement principles in the Indian context." },
+  { name: "Bachpan Bachao Andolan v. Union of India", year: "2011", court: "Supreme Court", topic: "Women & Child", holding: "Directions on child trafficking and missing children, including mandatory FIR registration." },
+  { name: "M.C. Mehta v. Union of India", year: "1987", court: "Supreme Court", topic: "Environment", holding: "Pioneered environmental public interest litigation; absolute liability for hazardous industries." },
+  { name: "Vishaka v. State of Rajasthan (POSH origin)", year: "1997", court: "Supreme Court", topic: "Women", holding: "Workplace sexual harassment violates Articles 14, 15 and 21; guidelines until legislation." },
+  { name: "Anuradha Bhasin v. Union of India", year: "2020", court: "Supreme Court", topic: "Cyber / Speech", holding: "Internet access restrictions must be proportionate and reasoned orders must be published." },
+  { name: "Ritesh Sinha v. State of U.P.", year: "2019", court: "Supreme Court", topic: "Evidence", holding: "Magistrate may order a voice sample; self-incrimination rule not violated." },
+  { name: "X v. State (NCT of Delhi)", year: "2023", court: "Supreme Court", topic: "Women & Child", holding: "Reiterated rights of survivors in cases involving sexual violence and termination of pregnancy." },
 ];
