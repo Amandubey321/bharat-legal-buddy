@@ -1,5 +1,4 @@
-import { createOpenAI } from "@ai-sdk/openai";
-import { streamText, type ModelMessage } from "ai";
+type ModelMessage = { role: "user" | "assistant"; content: string };
 
 export type ChatBody = {
   messages: { role: "user" | "assistant"; content: string }[];
@@ -90,22 +89,53 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   const encoder = new TextEncoder();
 
   async function* fromOpenRouter(key: string) {
-    const or = createOpenAI({
-      baseURL: "https://openrouter.ai/api/v1",
-      apiKey: key,
-      headers: { "X-Title": "NyayaSetu" },
-    });
-    const r = streamText({
-      model: or.chat("openrouter/free"),
-      system,
-      messages,
-      maxRetries: 0,
-      maxOutputTokens: 4000,
-      abortSignal: request.signal,
-    });
-    for await (const part of r.fullStream) {
-      if (part.type === "error") throw part.error;
-      if (part.type === "text-delta") yield part.text;
+    let res: Response;
+    try {
+      res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "X-Title": "NyayaSetu" },
+        body: JSON.stringify({
+          model: "openrouter/free",
+          stream: true,
+          max_tokens: 4000,
+          messages: [{ role: "system", content: system }, ...messages],
+        }),
+        signal: request.signal,
+      });
+    } catch (e) {
+      throw e;
+    }
+    if (!res.ok || !res.body) {
+      await res.text().catch(() => "");
+      throw Object.assign(new Error(`OpenRouter ${res.status}`), { statusCode: res.status });
+    }
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "";
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i: number;
+        while ((i = buf.indexOf("\n")) >= 0) {
+          const line = buf.slice(0, i).trim();
+          buf = buf.slice(i + 1);
+          if (!line.startsWith("data:")) continue;
+          const data = line.slice(5).trim();
+          if (data === "[DONE]") return;
+          try {
+            const j = JSON.parse(data);
+            if (j.error) throw Object.assign(new Error(j.error.message ?? "error"), { statusCode: j.error.code });
+            const t = j.choices?.[0]?.delta?.content;
+            if (t) yield t as string;
+          } catch (err) {
+            if ((err as { statusCode?: number }).statusCode !== undefined) throw err;
+          }
+        }
+      }
+    } finally {
+      reader.cancel().catch(() => {});
     }
   }
   const fromGroq = fromOpenRouter;
@@ -119,6 +149,8 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   try {
     first = await iter.next();
   } catch (err) {
+    // The user pressed Stop or left the page — not an error.
+    if (isAbort(err) || request.signal.aborted) return new Response(null, { status: 499 });
     return errorResponse(err);
   }
 
@@ -133,6 +165,10 @@ export async function handleLegalChat(request: Request): Promise<Response> {
         }
         controller.close();
       } catch (e) {
+        if (isAbort(e) || request.signal.aborted) {
+          try { controller.close(); } catch { /* already closed */ }
+          return;
+        }
         controller.enqueue(encoder.encode("\n\n_[The answer was interrupted. Please try again.]_"));
         console.error(e);
         controller.close();
@@ -150,6 +186,11 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       "X-Provider": provider,
     },
   });
+}
+
+function isAbort(err: unknown) {
+  const e = err as { name?: string; cause?: { name?: string } } | null;
+  return e?.name === "AbortError" || e?.cause?.name === "AbortError";
 }
 
 function errorResponse(err: unknown) {
