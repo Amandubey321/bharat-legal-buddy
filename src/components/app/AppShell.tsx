@@ -10,15 +10,20 @@ import { LANGUAGES, STATES, useSettings } from "@/lib/settings";
 import { toast } from "sonner";
 
 export const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/ask", label: "Ask AI" },
-  { to: "/rights", label: "Know Your Rights" },
-  { to: "/constitution", label: "Constitution" },
-  { to: "/laws", label: "Laws" },
-  { to: "/procedures", label: "Legal Procedures" },
-  { to: "/documents", label: "Documents" },
-  { to: "/cases", label: "Case Search" },
-  { to: "/saved", label: "Saved Answers" },
+  { to: "/", label: "🏠 Home" },
+  { to: "/ask", label: "🤖 Ask Legal AI" },
+  { to: "/constitution", label: "🇮🇳 Constitution" },
+  { to: "/rights", label: "⚖️ Know My Rights" },
+  { to: "/laws", label: "🔎 Search Laws" },
+  { to: "/analyzer", label: "📄 Document Analyzer" },
+  { to: "/documents", label: "📝 Document Generator" },
+  { to: "/police", label: "🚔 Police/FIR Guide" },
+  { to: "/procedures", label: "🏛️ Court & Procedure Guide" },
+  { to: "/authority", label: "📍 Find Authority" },
+  { to: "/myths", label: "🧠 Legal Myth vs Fact" },
+  { to: "/timeline", label: "📅 Case Timeline" },
+  { to: "/cases", label: "📚 Case Law Search" },
+  { to: "/saved", label: "🔖 Saved Answers" },
 ] as const;
 
 function EmergencyStrip() {

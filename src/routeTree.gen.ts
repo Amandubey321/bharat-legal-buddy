@@ -10,14 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyzerRouteImport } from './routes/analyzer'
 import { Route as AskRouteImport } from './routes/ask'
+import { Route as AuthorityRouteImport } from './routes/authority'
 import { Route as CasesRouteImport } from './routes/cases'
 import { Route as ConstitutionRouteImport } from './routes/constitution'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as LawsRouteImport } from './routes/laws'
+import { Route as MythsRouteImport } from './routes/myths'
+import { Route as PoliceRouteImport } from './routes/police'
 import { Route as ProceduresRouteImport } from './routes/procedures'
 import { Route as RightsRouteImport } from './routes/rights'
 import { Route as SavedRouteImport } from './routes/saved'
+import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,9 +30,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyzerRoute = AnalyzerRouteImport.update({
+  id: '/analyzer',
+  path: '/analyzer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AskRoute = AskRouteImport.update({
   id: '/ask',
   path: '/ask',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthorityRoute = AuthorityRouteImport.update({
+  id: '/authority',
+  path: '/authority',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasesRoute = CasesRouteImport.update({
@@ -50,6 +65,16 @@ const LawsRoute = LawsRouteImport.update({
   path: '/laws',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MythsRoute = MythsRouteImport.update({
+  id: '/myths',
+  path: '/myths',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliceRoute = PoliceRouteImport.update({
+  id: '/police',
+  path: '/police',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProceduresRoute = ProceduresRouteImport.update({
   id: '/procedures',
   path: '/procedures',
@@ -65,6 +90,11 @@ const SavedRoute = SavedRouteImport.update({
   path: '/saved',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TimelineRoute = TimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -73,90 +103,125 @@ const ApiChatRoute = ApiChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analyzer': typeof AnalyzerRoute
   '/ask': typeof AskRoute
+  '/authority': typeof AuthorityRoute
   '/cases': typeof CasesRoute
   '/constitution': typeof ConstitutionRoute
   '/documents': typeof DocumentsRoute
   '/laws': typeof LawsRoute
+  '/myths': typeof MythsRoute
+  '/police': typeof PoliceRoute
   '/procedures': typeof ProceduresRoute
   '/rights': typeof RightsRoute
   '/saved': typeof SavedRoute
+  '/timeline': typeof TimelineRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analyzer': typeof AnalyzerRoute
   '/ask': typeof AskRoute
+  '/authority': typeof AuthorityRoute
   '/cases': typeof CasesRoute
   '/constitution': typeof ConstitutionRoute
   '/documents': typeof DocumentsRoute
   '/laws': typeof LawsRoute
+  '/myths': typeof MythsRoute
+  '/police': typeof PoliceRoute
   '/procedures': typeof ProceduresRoute
   '/rights': typeof RightsRoute
   '/saved': typeof SavedRoute
+  '/timeline': typeof TimelineRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analyzer': typeof AnalyzerRoute
   '/ask': typeof AskRoute
+  '/authority': typeof AuthorityRoute
   '/cases': typeof CasesRoute
   '/constitution': typeof ConstitutionRoute
   '/documents': typeof DocumentsRoute
   '/laws': typeof LawsRoute
+  '/myths': typeof MythsRoute
+  '/police': typeof PoliceRoute
   '/procedures': typeof ProceduresRoute
   '/rights': typeof RightsRoute
   '/saved': typeof SavedRoute
+  '/timeline': typeof TimelineRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analyzer'
     | '/ask'
+    | '/authority'
     | '/cases'
     | '/constitution'
     | '/documents'
     | '/laws'
+    | '/myths'
+    | '/police'
     | '/procedures'
     | '/rights'
     | '/saved'
+    | '/timeline'
     | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analyzer'
     | '/ask'
+    | '/authority'
     | '/cases'
     | '/constitution'
     | '/documents'
     | '/laws'
+    | '/myths'
+    | '/police'
     | '/procedures'
     | '/rights'
     | '/saved'
+    | '/timeline'
     | '/api/chat'
   id:
     | '__root__'
     | '/'
+    | '/analyzer'
     | '/ask'
+    | '/authority'
     | '/cases'
     | '/constitution'
     | '/documents'
     | '/laws'
+    | '/myths'
+    | '/police'
     | '/procedures'
     | '/rights'
     | '/saved'
+    | '/timeline'
     | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyzerRoute: typeof AnalyzerRoute
   AskRoute: typeof AskRoute
+  AuthorityRoute: typeof AuthorityRoute
   CasesRoute: typeof CasesRoute
   ConstitutionRoute: typeof ConstitutionRoute
   DocumentsRoute: typeof DocumentsRoute
   LawsRoute: typeof LawsRoute
+  MythsRoute: typeof MythsRoute
+  PoliceRoute: typeof PoliceRoute
   ProceduresRoute: typeof ProceduresRoute
   RightsRoute: typeof RightsRoute
   SavedRoute: typeof SavedRoute
+  TimelineRoute: typeof TimelineRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
@@ -169,11 +234,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analyzer': {
+      id: '/analyzer'
+      path: '/analyzer'
+      fullPath: '/analyzer'
+      preLoaderRoute: typeof AnalyzerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ask': {
       id: '/ask'
       path: '/ask'
       fullPath: '/ask'
       preLoaderRoute: typeof AskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/authority': {
+      id: '/authority'
+      path: '/authority'
+      fullPath: '/authority'
+      preLoaderRoute: typeof AuthorityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cases': {
@@ -204,6 +283,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LawsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/myths': {
+      id: '/myths'
+      path: '/myths'
+      fullPath: '/myths'
+      preLoaderRoute: typeof MythsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/police': {
+      id: '/police'
+      path: '/police'
+      fullPath: '/police'
+      preLoaderRoute: typeof PoliceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/procedures': {
       id: '/procedures'
       path: '/procedures'
@@ -225,6 +318,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SavedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -237,14 +337,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyzerRoute: AnalyzerRoute,
   AskRoute: AskRoute,
+  AuthorityRoute: AuthorityRoute,
   CasesRoute: CasesRoute,
   ConstitutionRoute: ConstitutionRoute,
   DocumentsRoute: DocumentsRoute,
   LawsRoute: LawsRoute,
+  MythsRoute: MythsRoute,
+  PoliceRoute: PoliceRoute,
   ProceduresRoute: ProceduresRoute,
   RightsRoute: RightsRoute,
   SavedRoute: SavedRoute,
+  TimelineRoute: TimelineRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
