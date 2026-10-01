@@ -74,8 +74,9 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (!Array.isArray(body.messages) || body.messages.length === 0) {
     return new Response("No question provided", { status: 400 });
   }
-  const apiKey = process.env["OPENROUTER_API_KEY"];
-  if (!apiKey) {
+  const groqKey = process.env["GROQ_API_KEY"];
+  const openrouterKey = process.env["OPENROUTER_API_KEY"];
+  if (!groqKey && !openrouterKey) {
     return new Response("AI is not configured on the server.", { status: 500 });
   }
   if (body.attachment?.data) {
@@ -88,14 +89,14 @@ export async function handleLegalChat(request: Request): Promise<Response> {
 
   const encoder = new TextEncoder();
 
-  async function* fromOpenRouter(key: string) {
+  async function* fromProvider(url: string, key: string, model: string) {
     let res: Response;
     try {
-      res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      res = await fetch(url, {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "X-Title": "NyayaSetu" },
         body: JSON.stringify({
-          model: "openrouter/free",
+          model,
           stream: true,
           max_tokens: 4000,
           messages: [{ role: "system", content: system }, ...messages],
