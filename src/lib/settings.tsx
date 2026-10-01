@@ -21,7 +21,7 @@ const SettingsContext = createContext<Ctx | null>(null);
 const KEY = "nyayasetu.settings";
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [s, setS] = useState<Settings>({ language: "English", state: "All India", groqKey: "" });
+  const [s, setS] = useState<Settings>({ language: "Hindi", state: "All India", groqKey: "" });
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
