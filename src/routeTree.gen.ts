@@ -17,6 +17,7 @@ import { Route as CasesRouteImport } from './routes/cases'
 import { Route as ConstitutionRouteImport } from './routes/constitution'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as LawsRouteImport } from './routes/laws'
+import { Route as MythsRouteImport } from './routes/myths'
 import { Route as PoliceRouteImport } from './routes/police'
 import { Route as ProceduresRouteImport } from './routes/procedures'
 import { Route as RightsRouteImport } from './routes/rights'
@@ -64,6 +65,11 @@ const LawsRoute = LawsRouteImport.update({
   path: '/laws',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MythsRoute = MythsRouteImport.update({
+  id: '/myths',
+  path: '/myths',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoliceRoute = PoliceRouteImport.update({
   id: '/police',
   path: '/police',
@@ -104,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/constitution': typeof ConstitutionRoute
   '/documents': typeof DocumentsRoute
   '/laws': typeof LawsRoute
+  '/myths': typeof MythsRoute
   '/police': typeof PoliceRoute
   '/procedures': typeof ProceduresRoute
   '/rights': typeof RightsRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/constitution': typeof ConstitutionRoute
   '/documents': typeof DocumentsRoute
   '/laws': typeof LawsRoute
+  '/myths': typeof MythsRoute
   '/police': typeof PoliceRoute
   '/procedures': typeof ProceduresRoute
   '/rights': typeof RightsRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/constitution': typeof ConstitutionRoute
   '/documents': typeof DocumentsRoute
   '/laws': typeof LawsRoute
+  '/myths': typeof MythsRoute
   '/police': typeof PoliceRoute
   '/procedures': typeof ProceduresRoute
   '/rights': typeof RightsRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/constitution'
     | '/documents'
     | '/laws'
+    | '/myths'
     | '/police'
     | '/procedures'
     | '/rights'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/constitution'
     | '/documents'
     | '/laws'
+    | '/myths'
     | '/police'
     | '/procedures'
     | '/rights'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/constitution'
     | '/documents'
     | '/laws'
+    | '/myths'
     | '/police'
     | '/procedures'
     | '/rights'
@@ -204,6 +216,7 @@ export interface RootRouteChildren {
   ConstitutionRoute: typeof ConstitutionRoute
   DocumentsRoute: typeof DocumentsRoute
   LawsRoute: typeof LawsRoute
+  MythsRoute: typeof MythsRoute
   PoliceRoute: typeof PoliceRoute
   ProceduresRoute: typeof ProceduresRoute
   RightsRoute: typeof RightsRoute
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LawsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/myths': {
+      id: '/myths'
+      path: '/myths'
+      fullPath: '/myths'
+      preLoaderRoute: typeof MythsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/police': {
       id: '/police'
       path: '/police'
@@ -324,6 +344,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConstitutionRoute: ConstitutionRoute,
   DocumentsRoute: DocumentsRoute,
   LawsRoute: LawsRoute,
+  MythsRoute: MythsRoute,
   PoliceRoute: PoliceRoute,
   ProceduresRoute: ProceduresRoute,
   RightsRoute: RightsRoute,

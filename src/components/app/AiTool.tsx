@@ -27,15 +27,15 @@ export function AiTool({ mode, placeholder, chips, allowFile, buildPrompt, extra
 
   function pickFile(f: File | undefined) {
     if (!f) return;
-    if (!/^(application\/pdf|image\/(png|jpeg|webp))$/.test(f.type)) return toast.error("Use a PDF, JPG, PNG or WEBP file.");
-    if (f.size > 10 * 1024 * 1024) return toast.error("File too large (max 10 MB).");
+    if (!/^(application\/pdf|image\/(png|jpeg|webp))$/.test(f.type)) { toast.error("Use a PDF, JPG, PNG or WEBP file."); return; }
+    if (f.size > 10 * 1024 * 1024) { toast.error("File too large (max 10 MB)."); return; }
     const r = new FileReader();
     r.onload = () => setAtt({ name: f.name, mediaType: f.type, data: String(r.result) });
     r.readAsDataURL(f);
   }
 
   async function run(text = input) {
-    if (!text.trim() && !att) return toast.error("Please type or attach something first.");
+    if (!text.trim() && !att) { toast.error("Please type or attach something first."); return; }
     ctrl.current = new AbortController();
     setBusy(true); setOut("");
     try {

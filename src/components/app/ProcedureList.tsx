@@ -8,7 +8,7 @@ export function ProcedureList({ slugs }: { slugs: string[] }) {
   const s = useSettings();
   const list = PROCEDURES.filter((p) => slugs.includes(p.slug));
   return (
-    <Accordion type="single" collapsible defaultValue={list[0]?.slug} className="space-y-3">
+    <Accordion type="single" collapsible defaultValue={list[0]?.slug ?? ""} className="space-y-3">
       {list.map((p) => (
         <AccordionItem key={p.slug} value={p.slug} className="rounded-xl border border-border bg-card px-5">
           <AccordionTrigger className="text-left">
