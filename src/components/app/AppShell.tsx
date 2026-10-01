@@ -123,6 +123,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-7xl px-4 py-6 text-xs text-muted-foreground">
           <p className="font-medium text-foreground">NyayaSetu provides general legal information, not legal advice.</p>
           <p className="mt-1">It is not a law firm and is not a substitute for a licensed advocate. Laws change and vary by state — always verify with official sources (India Code, Legislative Department, court websites). Free legal aid: NALSA 15100.</p>
+          <p className="mt-3 border-t border-border/60 pt-3">Developed by Aman Dubey</p>
         </div>
       </footer>
       <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
