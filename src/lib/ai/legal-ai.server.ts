@@ -119,6 +119,8 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   try {
     first = await iter.next();
   } catch (err) {
+    // The user pressed Stop or left the page — not an error.
+    if (isAbort(err) || request.signal.aborted) return new Response(null, { status: 499 });
     return errorResponse(err);
   }
 
@@ -133,6 +135,10 @@ export async function handleLegalChat(request: Request): Promise<Response> {
         }
         controller.close();
       } catch (e) {
+        if (isAbort(e) || request.signal.aborted) {
+          try { controller.close(); } catch { /* already closed */ }
+          return;
+        }
         controller.enqueue(encoder.encode("\n\n_[The answer was interrupted. Please try again.]_"));
         console.error(e);
         controller.close();
@@ -150,6 +156,11 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       "X-Provider": provider,
     },
   });
+}
+
+function isAbort(err: unknown) {
+  const e = err as { name?: string; cause?: { name?: string } } | null;
+  return e?.name === "AbortError" || e?.cause?.name === "AbortError";
 }
 
 function errorResponse(err: unknown) {
