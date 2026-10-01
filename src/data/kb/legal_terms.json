@@ -1,0 +1,444 @@
+[
+  {
+    "id": "term-fir",
+    "term": "FIR",
+    "term_hi": "प्रथम सूचना रिपोर्ट",
+    "definition": "First Information Report — the first written record by police of a cognizable offence.",
+    "definition_hi": "संज्ञेय अपराध की पुलिस द्वारा दर्ज पहली लिखित सूचना।",
+    "keywords": [
+      "fir",
+      "first",
+      "information",
+      "report",
+      "the",
+      "written",
+      "record",
+      "police",
+      "cognizable",
+      "offence"
+    ]
+  },
+  {
+    "id": "term-zero-fir",
+    "term": "Zero FIR",
+    "term_hi": "ज़ीरो एफआईआर",
+    "definition": "An FIR registered at any police station regardless of where the offence occurred, later transferred.",
+    "definition_hi": "किसी भी थाने में दर्ज एफआईआर, चाहे अपराध कहीं भी हुआ हो; बाद में संबंधित थाने को भेजी जाती है।",
+    "keywords": [
+      "zero",
+      "fir",
+      "registered",
+      "any",
+      "police",
+      "station",
+      "regardless",
+      "where",
+      "the",
+      "offence",
+      "occurred",
+      "later",
+      "transferred"
+    ]
+  },
+  {
+    "id": "term-cognizable-offence",
+    "term": "Cognizable offence",
+    "term_hi": "संज्ञेय अपराध",
+    "definition": "An offence where police can register an FIR and arrest without a warrant.",
+    "definition_hi": "ऐसा अपराध जिसमें पुलिस बिना वारंट गिरफ्तार कर सकती है और एफआईआर दर्ज करती है।",
+    "keywords": [
+      "cognizable",
+      "offence",
+      "where",
+      "police",
+      "can",
+      "register",
+      "fir",
+      "and",
+      "arrest",
+      "without",
+      "warrant"
+    ]
+  },
+  {
+    "id": "term-non-cognizable-offence",
+    "term": "Non-cognizable offence",
+    "term_hi": "असंज्ञेय अपराध",
+    "definition": "An offence where police need a Magistrate's permission to investigate.",
+    "definition_hi": "ऐसा अपराध जिसकी जाँच के लिए पुलिस को मजिस्ट्रेट की अनुमति चाहिए।",
+    "keywords": [
+      "non",
+      "cognizable",
+      "offence",
+      "where",
+      "police",
+      "need",
+      "magistrate",
+      "permission",
+      "investigate"
+    ]
+  },
+  {
+    "id": "term-bail",
+    "term": "Bail",
+    "term_hi": "जमानत",
+    "definition": "Release of an accused from custody, usually on a bond or surety, pending trial.",
+    "definition_hi": "मुकदमे के दौरान आरोपी को बॉन्ड या ज़मानतदार पर हिरासत से रिहा करना।",
+    "keywords": [
+      "bail",
+      "release",
+      "accused",
+      "from",
+      "custody",
+      "usually",
+      "bond",
+      "surety",
+      "pending",
+      "trial"
+    ]
+  },
+  {
+    "id": "term-anticipatory-bail",
+    "term": "Anticipatory bail",
+    "term_hi": "अग्रिम जमानत",
+    "definition": "Bail granted in anticipation of arrest for a non-bailable offence.",
+    "definition_hi": "गैर-जमानती अपराध में गिरफ्तारी से पहले ली जाने वाली जमानत।",
+    "keywords": [
+      "anticipatory",
+      "bail",
+      "granted",
+      "anticipation",
+      "arrest",
+      "for",
+      "non",
+      "bailable",
+      "offence"
+    ]
+  },
+  {
+    "id": "term-bailable-offence",
+    "term": "Bailable offence",
+    "term_hi": "जमानती अपराध",
+    "definition": "An offence in which bail is a right.",
+    "definition_hi": "ऐसा अपराध जिसमें जमानत अधिकार के रूप में मिलती है।",
+    "keywords": [
+      "bailable",
+      "offence",
+      "which",
+      "bail",
+      "right"
+    ]
+  },
+  {
+    "id": "term-non-bailable-offence",
+    "term": "Non-bailable offence",
+    "term_hi": "गैर-जमानती अपराध",
+    "definition": "An offence in which bail is at the court's discretion.",
+    "definition_hi": "ऐसा अपराध जिसमें जमानत अदालत के विवेक पर है।",
+    "keywords": [
+      "non",
+      "bailable",
+      "offence",
+      "which",
+      "bail",
+      "the",
+      "court",
+      "discretion"
+    ]
+  },
+  {
+    "id": "term-charge-sheet",
+    "term": "Charge sheet",
+    "term_hi": "आरोप पत्र",
+    "definition": "Police report filed in court after investigation, listing evidence against the accused.",
+    "definition_hi": "जाँच के बाद अदालत में दायर पुलिस रिपोर्ट।",
+    "keywords": [
+      "charge",
+      "sheet",
+      "police",
+      "report",
+      "filed",
+      "court",
+      "after",
+      "investigation",
+      "listing",
+      "evidence",
+      "against",
+      "the",
+      "accused"
+    ]
+  },
+  {
+    "id": "term-remand",
+    "term": "Remand",
+    "term_hi": "रिमांड",
+    "definition": "Order by a Magistrate sending an accused to police or judicial custody.",
+    "definition_hi": "मजिस्ट्रेट का आदेश जिससे आरोपी पुलिस या न्यायिक हिरासत में भेजा जाता है।",
+    "keywords": [
+      "remand",
+      "order",
+      "magistrate",
+      "sending",
+      "accused",
+      "police",
+      "judicial",
+      "custody"
+    ]
+  },
+  {
+    "id": "term-summons",
+    "term": "Summons",
+    "term_hi": "समन",
+    "definition": "A court order requiring a person to appear.",
+    "definition_hi": "अदालत में हाज़िर होने का आदेश।",
+    "keywords": [
+      "summons",
+      "court",
+      "order",
+      "requiring",
+      "person",
+      "appear"
+    ]
+  },
+  {
+    "id": "term-warrant",
+    "term": "Warrant",
+    "term_hi": "वारंट",
+    "definition": "A court order authorising arrest or search.",
+    "definition_hi": "गिरफ्तारी या तलाशी का अदालती आदेश।",
+    "keywords": [
+      "warrant",
+      "court",
+      "order",
+      "authorising",
+      "arrest",
+      "search"
+    ]
+  },
+  {
+    "id": "term-affidavit",
+    "term": "Affidavit",
+    "term_hi": "शपथ पत्र",
+    "definition": "A written statement confirmed on oath.",
+    "definition_hi": "शपथ पर दिया गया लिखित बयान।",
+    "keywords": [
+      "affidavit",
+      "written",
+      "statement",
+      "confirmed",
+      "oath"
+    ]
+  },
+  {
+    "id": "term-writ",
+    "term": "Writ",
+    "term_hi": "रिट",
+    "definition": "A formal order by the Supreme Court or a High Court to enforce rights (habeas corpus, mandamus, etc.).",
+    "definition_hi": "अधिकार लागू कराने के लिए सुप्रीम कोर्ट/हाईकोर्ट का आदेश।",
+    "keywords": [
+      "writ",
+      "formal",
+      "order",
+      "the",
+      "supreme",
+      "court",
+      "high",
+      "enforce",
+      "rights",
+      "habeas",
+      "corpus",
+      "mandamus",
+      "etc"
+    ]
+  },
+  {
+    "id": "term-habeas-corpus",
+    "term": "Habeas corpus",
+    "term_hi": "बंदी प्रत्यक्षीकरण",
+    "definition": "Writ to produce a detained person before court.",
+    "definition_hi": "हिरासत में लिए व्यक्ति को अदालत के सामने पेश करने की रिट।",
+    "keywords": [
+      "habeas",
+      "corpus",
+      "writ",
+      "produce",
+      "detained",
+      "person",
+      "before",
+      "court"
+    ]
+  },
+  {
+    "id": "term-pil",
+    "term": "PIL",
+    "term_hi": "जनहित याचिका",
+    "definition": "Public Interest Litigation — a case filed for the public good.",
+    "definition_hi": "जनता के हित में दायर याचिका।",
+    "keywords": [
+      "pil",
+      "public",
+      "interest",
+      "litigation",
+      "case",
+      "filed",
+      "for",
+      "the",
+      "good"
+    ]
+  },
+  {
+    "id": "term-plaintiff",
+    "term": "Plaintiff",
+    "term_hi": "वादी",
+    "definition": "The person who files a civil suit.",
+    "definition_hi": "दीवानी मुकदमा दायर करने वाला।",
+    "keywords": [
+      "plaintiff",
+      "the",
+      "person",
+      "who",
+      "files",
+      "civil",
+      "suit"
+    ]
+  },
+  {
+    "id": "term-defendant",
+    "term": "Defendant",
+    "term_hi": "प्रतिवादी",
+    "definition": "The person against whom a civil suit is filed.",
+    "definition_hi": "जिसके विरुद्ध मुकदमा दायर हो।",
+    "keywords": [
+      "defendant",
+      "the",
+      "person",
+      "against",
+      "whom",
+      "civil",
+      "suit",
+      "filed"
+    ]
+  },
+  {
+    "id": "term-legal-notice",
+    "term": "Legal notice",
+    "term_hi": "कानूनी नोटिस",
+    "definition": "A formal written demand sent before starting legal action.",
+    "definition_hi": "मुकदमे से पहले भेजी जाने वाली औपचारिक लिखित माँग।",
+    "keywords": [
+      "legal",
+      "notice",
+      "formal",
+      "written",
+      "demand",
+      "sent",
+      "before",
+      "starting",
+      "action"
+    ]
+  },
+  {
+    "id": "term-limitation-period",
+    "term": "Limitation period",
+    "term_hi": "परिसीमा अवधि",
+    "definition": "The time limit within which a case must be filed.",
+    "definition_hi": "वह समय सीमा जिसके भीतर मुकदमा दायर करना होता है।",
+    "keywords": [
+      "limitation",
+      "period",
+      "the",
+      "time",
+      "limit",
+      "within",
+      "which",
+      "case",
+      "must",
+      "filed"
+    ]
+  },
+  {
+    "id": "term-cross-examination",
+    "term": "Cross-examination",
+    "term_hi": "जिरह",
+    "definition": "Questioning of a witness by the opposing side.",
+    "definition_hi": "विपक्ष द्वारा गवाह से पूछताछ।",
+    "keywords": [
+      "cross",
+      "examination",
+      "questioning",
+      "witness",
+      "the",
+      "opposing",
+      "side"
+    ]
+  },
+  {
+    "id": "term-acquittal",
+    "term": "Acquittal",
+    "term_hi": "दोषमुक्ति",
+    "definition": "A court finding that the accused is not guilty.",
+    "definition_hi": "अदालत द्वारा आरोपी को निर्दोष ठहराना।",
+    "keywords": [
+      "acquittal",
+      "court",
+      "finding",
+      "that",
+      "the",
+      "accused",
+      "not",
+      "guilty"
+    ]
+  },
+  {
+    "id": "term-conviction",
+    "term": "Conviction",
+    "term_hi": "दोषसिद्धि",
+    "definition": "A court finding that the accused is guilty.",
+    "definition_hi": "अदालत द्वारा आरोपी को दोषी ठहराना।",
+    "keywords": [
+      "conviction",
+      "court",
+      "finding",
+      "that",
+      "the",
+      "accused",
+      "guilty"
+    ]
+  },
+  {
+    "id": "term-advocate",
+    "term": "Advocate",
+    "term_hi": "अधिवक्ता",
+    "definition": "A lawyer enrolled with a State Bar Council, entitled to practise.",
+    "definition_hi": "बार काउंसिल में पंजीकृत वकील।",
+    "keywords": [
+      "advocate",
+      "lawyer",
+      "enrolled",
+      "with",
+      "state",
+      "bar",
+      "council",
+      "entitled",
+      "practise"
+    ]
+  },
+  {
+    "id": "term-legal-aid",
+    "term": "Legal aid",
+    "term_hi": "विधिक सहायता",
+    "definition": "Free legal services for eligible persons through Legal Services Authorities.",
+    "definition_hi": "पात्र लोगों को विधिक सेवा प्राधिकरण से मुफ्त कानूनी मदद।",
+    "keywords": [
+      "legal",
+      "aid",
+      "free",
+      "services",
+      "for",
+      "eligible",
+      "persons",
+      "through",
+      "authorities"
+    ]
+  }
+]

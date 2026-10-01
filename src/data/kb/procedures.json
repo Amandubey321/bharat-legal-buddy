@@ -1,0 +1,238 @@
+[
+  {
+    "id": "proc-e-fir",
+    "title": "File an FIR, e-FIR or Zero FIR",
+    "summary": "Report a cognizable offence to police.",
+    "steps": [
+      "Go to any police station (Zero FIR) or use your state police's citizen portal for e-FIR where available.",
+      "Give a clear written account: date, time, place, persons involved, witnesses.",
+      "For an e-FIR, visit the police station to sign it within 3 days.",
+      "Collect your free FIR copy and note the FIR number.",
+      "If police refuse, send the complaint in writing/post to the Superintendent of Police; next, approach the Judicial Magistrate."
+    ],
+    "links": [
+      {
+        "label": "Emergency: 112",
+        "url": "tel:112"
+      }
+    ],
+    "high_risk": false,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "file",
+      "fir",
+      "zero",
+      "report",
+      "cognizable",
+      "offence",
+      "police"
+    ]
+  },
+  {
+    "id": "proc-arrest",
+    "title": "If you or someone is detained / arrested",
+    "summary": "Immediate steps to protect your rights.",
+    "steps": [
+      "Stay calm. Ask for the grounds of arrest and the officer's identity.",
+      "Ask police to inform a family member or friend of the arrest and place of detention.",
+      "Ask to meet an advocate. If you cannot afford one, ask for free legal aid (NALSA 15100).",
+      "Do not sign blank papers. You need not confess — confessions to police are not admissible.",
+      "Ensure production before a magistrate within 24 hours.",
+      "Ask for a medical examination if injured.",
+      "Contact an advocate immediately about bail."
+    ],
+    "links": [
+      {
+        "label": "NALSA Legal Aid",
+        "url": "https://nalsa.gov.in/"
+      }
+    ],
+    "high_risk": true,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "you",
+      "someone",
+      "detained",
+      "arrested",
+      "immediate",
+      "steps",
+      "protect",
+      "your",
+      "rights"
+    ]
+  },
+  {
+    "id": "proc-consumer-complaint",
+    "title": "File a consumer complaint",
+    "summary": "Complain about defective goods or poor service.",
+    "steps": [
+      "Send a written complaint/legal notice to the seller or service provider and keep proof.",
+      "Call the National Consumer Helpline 1915 for mediation.",
+      "Gather bills, warranty, communication and photos.",
+      "File online on e-Daakhil with the District Commission (pecuniary limits apply).",
+      "Pay the prescribed fee and attend hearings online or in person."
+    ],
+    "links": [
+      {
+        "label": "e-Daakhil",
+        "url": "https://edaakhil.nic.in/"
+      },
+      {
+        "label": "Consumer Helpline",
+        "url": "https://consumerhelpline.gov.in/"
+      }
+    ],
+    "high_risk": false,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "file",
+      "consumer",
+      "complaint",
+      "complain",
+      "about",
+      "defective",
+      "goods",
+      "poor",
+      "service"
+    ]
+  },
+  {
+    "id": "proc-cyber-fraud",
+    "title": "Report cyber / UPI fraud",
+    "summary": "Act within the golden hour.",
+    "steps": [
+      "Immediately call 1930 (Cyber Fraud Helpline).",
+      "Inform your bank to block the card/account.",
+      "Register a complaint at cybercrime.gov.in with transaction details.",
+      "Keep screenshots, SMS, call logs and URLs.",
+      "Follow up with the local cyber cell using your acknowledgement number."
+    ],
+    "links": [
+      {
+        "label": "cybercrime.gov.in",
+        "url": "https://cybercrime.gov.in/"
+      },
+      {
+        "label": "Call 1930",
+        "url": "tel:1930"
+      }
+    ],
+    "high_risk": false,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "report",
+      "cyber",
+      "upi",
+      "fraud",
+      "act",
+      "within",
+      "the",
+      "golden",
+      "hour"
+    ]
+  },
+  {
+    "id": "proc-rti",
+    "title": "File an RTI application",
+    "summary": "Request information from a public authority.",
+    "steps": [
+      "Identify the public authority holding the information.",
+      "Write the application under Section 6(1) with specific questions.",
+      "Pay the fee (₹10 for central government; state fees vary; BPL applicants exempt).",
+      "For central ministries, file online at rtionline.gov.in.",
+      "If no reply in 30 days, file a first appeal under Section 19."
+    ],
+    "links": [
+      {
+        "label": "RTI Online",
+        "url": "https://rtionline.gov.in/"
+      }
+    ],
+    "high_risk": false,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "file",
+      "rti",
+      "application",
+      "request",
+      "information",
+      "from",
+      "public",
+      "authority"
+    ]
+  },
+  {
+    "id": "proc-domestic-violence",
+    "title": "Get protection from domestic violence",
+    "summary": "Protection, residence and maintenance reliefs.",
+    "steps": [
+      "In danger, call 112 or Women Helpline 181.",
+      "Contact the Protection Officer or a registered service provider in your district.",
+      "A Domestic Incident Report can be prepared.",
+      "Apply to the Magistrate under Section 12 of the PWDVA for protection/residence/monetary orders.",
+      "Free legal aid is available from the District Legal Services Authority."
+    ],
+    "links": [
+      {
+        "label": "National Commission for Women",
+        "url": "https://ncw.nic.in/"
+      }
+    ],
+    "high_risk": true,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "get",
+      "protection",
+      "from",
+      "domestic",
+      "violence",
+      "residence",
+      "and",
+      "maintenance",
+      "reliefs"
+    ]
+  },
+  {
+    "id": "proc-traffic-challan",
+    "title": "Pay or contest a traffic challan",
+    "summary": "Check and resolve e-challans.",
+    "steps": [
+      "Check the challan on the e-Challan portal using vehicle or challan number.",
+      "Pay online if correct.",
+      "If wrong, raise a grievance on the portal or contest at the virtual/traffic court.",
+      "Keep evidence (photos, location data) to support your case."
+    ],
+    "links": [
+      {
+        "label": "e-Challan",
+        "url": "https://echallan.parivahan.gov.in/"
+      }
+    ],
+    "high_risk": false,
+    "simple_explanation_hi": "DATA_NOT_AVAILABLE",
+    "jurisdiction": "India (Central); state portals and practice vary",
+    "last_verified_date": "2026-10-01",
+    "keywords": [
+      "pay",
+      "contest",
+      "traffic",
+      "challan",
+      "check",
+      "and",
+      "resolve",
+      "challans"
+    ]
+  }
+]
