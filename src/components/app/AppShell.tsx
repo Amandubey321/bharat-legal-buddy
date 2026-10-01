@@ -57,20 +57,11 @@ function SettingsDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2"><KeyRound className="h-5 w-5" /> AI settings</DialogTitle>
           <DialogDescription>
-            This app answers using your own Groq API key only. Add it below — without a key, the AI cannot answer.
+            AI answers are powered by OpenRouter, configured securely on the server. No key is needed from you.
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-2">
-          <Label htmlFor="groq">Groq API key (required)</Label>
-          <Input id="groq" type="password" placeholder="gsk_..." value={key} onChange={(e) => setKey(e.target.value)} />
-          <p className="text-xs text-muted-foreground">
-            Stored only in this browser and sent with your questions. Get one at{" "}
-            <a className="underline" href="https://console.groq.com/keys" target="_blank" rel="noreferrer">console.groq.com</a>.
-          </p>
-        </div>
         <div className="flex justify-end gap-2">
-          {s.groqKey && <Button variant="outline" onClick={() => { s.update({ groqKey: "" }); setKey(""); toast.success("Groq key removed"); }}>Remove key</Button>}
-          <Button onClick={() => { s.update({ groqKey: key.trim() }); onOpenChange(false); toast.success("Settings saved"); }}>Save</Button>
+          <Button onClick={() => onOpenChange(false)}>OK</Button>
         </div>
       </DialogContent>
     </Dialog>
