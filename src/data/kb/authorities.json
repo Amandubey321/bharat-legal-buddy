@@ -1,0 +1,132 @@
+[
+  {
+    "id": "auth-112",
+    "name": "Emergency Response Support System",
+    "type": "Helpline",
+    "contact": "112",
+    "url": null,
+    "purpose": "Police, fire, ambulance emergencies",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-1930",
+    "name": "National Cyber Crime Helpline",
+    "type": "Helpline",
+    "contact": "1930",
+    "url": "https://cybercrime.gov.in",
+    "purpose": "Report online financial fraud quickly",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-1091",
+    "name": "Women Helpline (Police)",
+    "type": "Helpline",
+    "contact": "1091",
+    "url": null,
+    "purpose": "Women in distress",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-181",
+    "name": "Women Helpline",
+    "type": "Helpline",
+    "contact": "181",
+    "url": null,
+    "purpose": "Women in distress (state-run)",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-1098",
+    "name": "Childline",
+    "type": "Helpline",
+    "contact": "1098",
+    "url": null,
+    "purpose": "Children in need of care and protection",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-15100",
+    "name": "NALSA Legal Aid Helpline",
+    "type": "Helpline",
+    "contact": "15100",
+    "url": "https://nalsa.gov.in",
+    "purpose": "Free legal aid",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-1915",
+    "name": "National Consumer Helpline",
+    "type": "Helpline",
+    "contact": "1915",
+    "url": "https://consumerhelpline.gov.in",
+    "purpose": "Consumer complaints and guidance",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-edaakhil",
+    "name": "e-Daakhil (Consumer Commission e-filing)",
+    "type": "Portal",
+    "contact": "DATA_NOT_AVAILABLE",
+    "url": "https://edaakhil.nic.in",
+    "purpose": "File consumer complaints online",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-rti",
+    "name": "RTI Online (Central Government)",
+    "type": "Portal",
+    "contact": "DATA_NOT_AVAILABLE",
+    "url": "https://rtionline.gov.in",
+    "purpose": "File RTI applications to central public authorities",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-nhrc",
+    "name": "National Human Rights Commission",
+    "type": "Commission",
+    "contact": "DATA_NOT_AVAILABLE",
+    "url": "https://nhrc.nic.in",
+    "purpose": "Human rights violations, custodial abuse",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-ncw",
+    "name": "National Commission for Women",
+    "type": "Commission",
+    "contact": "DATA_NOT_AVAILABLE",
+    "url": "https://ncw.nic.in",
+    "purpose": "Complaints relating to women's rights",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-sci",
+    "name": "Supreme Court of India",
+    "type": "Court",
+    "contact": "DATA_NOT_AVAILABLE",
+    "url": "https://www.sci.gov.in",
+    "purpose": "Apex court; Article 32 writs, SLPs",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "auth-ecourts",
+    "name": "eCourts Services",
+    "type": "Portal",
+    "contact": "DATA_NOT_AVAILABLE",
+    "url": "https://ecourts.gov.in",
+    "purpose": "Case status, cause lists, orders",
+    "jurisdiction": "India (Central)",
+    "last_verified_date": "2026-10-01"
+  }
+]

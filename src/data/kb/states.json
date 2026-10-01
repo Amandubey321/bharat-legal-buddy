@@ -1,0 +1,326 @@
+[
+  {
+    "id": "state-andhra-pradesh",
+    "name": "Andhra Pradesh",
+    "type": "State",
+    "high_court": "High Court of Andhra Pradesh",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-arunachal-pradesh",
+    "name": "Arunachal Pradesh",
+    "type": "State",
+    "high_court": "Gauhati High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-assam",
+    "name": "Assam",
+    "type": "State",
+    "high_court": "Gauhati High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-bihar",
+    "name": "Bihar",
+    "type": "State",
+    "high_court": "Patna High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-chhattisgarh",
+    "name": "Chhattisgarh",
+    "type": "State",
+    "high_court": "High Court of Chhattisgarh",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-goa",
+    "name": "Goa",
+    "type": "State",
+    "high_court": "Bombay High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-gujarat",
+    "name": "Gujarat",
+    "type": "State",
+    "high_court": "High Court of Gujarat",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-haryana",
+    "name": "Haryana",
+    "type": "State",
+    "high_court": "High Court of Punjab and Haryana",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-himachal-pradesh",
+    "name": "Himachal Pradesh",
+    "type": "State",
+    "high_court": "High Court of Himachal Pradesh",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-jharkhand",
+    "name": "Jharkhand",
+    "type": "State",
+    "high_court": "High Court of Jharkhand",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-karnataka",
+    "name": "Karnataka",
+    "type": "State",
+    "high_court": "High Court of Karnataka",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-kerala",
+    "name": "Kerala",
+    "type": "State",
+    "high_court": "High Court of Kerala",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-madhya-pradesh",
+    "name": "Madhya Pradesh",
+    "type": "State",
+    "high_court": "High Court of Madhya Pradesh",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-maharashtra",
+    "name": "Maharashtra",
+    "type": "State",
+    "high_court": "Bombay High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-manipur",
+    "name": "Manipur",
+    "type": "State",
+    "high_court": "High Court of Manipur",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-meghalaya",
+    "name": "Meghalaya",
+    "type": "State",
+    "high_court": "High Court of Meghalaya",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-mizoram",
+    "name": "Mizoram",
+    "type": "State",
+    "high_court": "Gauhati High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-nagaland",
+    "name": "Nagaland",
+    "type": "State",
+    "high_court": "Gauhati High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-odisha",
+    "name": "Odisha",
+    "type": "State",
+    "high_court": "Orissa High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-punjab",
+    "name": "Punjab",
+    "type": "State",
+    "high_court": "High Court of Punjab and Haryana",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-rajasthan",
+    "name": "Rajasthan",
+    "type": "State",
+    "high_court": "Rajasthan High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-sikkim",
+    "name": "Sikkim",
+    "type": "State",
+    "high_court": "High Court of Sikkim",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-tamil-nadu",
+    "name": "Tamil Nadu",
+    "type": "State",
+    "high_court": "Madras High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-telangana",
+    "name": "Telangana",
+    "type": "State",
+    "high_court": "High Court for the State of Telangana",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-tripura",
+    "name": "Tripura",
+    "type": "State",
+    "high_court": "High Court of Tripura",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-uttar-pradesh",
+    "name": "Uttar Pradesh",
+    "type": "State",
+    "high_court": "Allahabad High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-uttarakhand",
+    "name": "Uttarakhand",
+    "type": "State",
+    "high_court": "High Court of Uttarakhand",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-west-bengal",
+    "name": "West Bengal",
+    "type": "State",
+    "high_court": "Calcutta High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-andaman-and-nicobar-islands",
+    "name": "Andaman and Nicobar Islands",
+    "type": "UT",
+    "high_court": "Calcutta High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-chandigarh",
+    "name": "Chandigarh",
+    "type": "UT",
+    "high_court": "High Court of Punjab and Haryana",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-dadra-and-nagar-haveli-and-daman-and-diu",
+    "name": "Dadra and Nagar Haveli and Daman and Diu",
+    "type": "UT",
+    "high_court": "Bombay High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-delhi",
+    "name": "Delhi",
+    "type": "UT",
+    "high_court": "High Court of Delhi",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-jammu-and-kashmir",
+    "name": "Jammu and Kashmir",
+    "type": "UT",
+    "high_court": "High Court of Jammu & Kashmir and Ladakh",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-ladakh",
+    "name": "Ladakh",
+    "type": "UT",
+    "high_court": "High Court of Jammu & Kashmir and Ladakh",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-lakshadweep",
+    "name": "Lakshadweep",
+    "type": "UT",
+    "high_court": "High Court of Kerala",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  },
+  {
+    "id": "state-puducherry",
+    "name": "Puducherry",
+    "type": "UT",
+    "high_court": "Madras High Court",
+    "police_portal": "DATA_NOT_AVAILABLE",
+    "state_laws": "DATA_NOT_AVAILABLE",
+    "last_verified_date": "2026-10-01"
+  }
+]
