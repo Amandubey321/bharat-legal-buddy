@@ -100,6 +100,7 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       system,
       messages,
       maxRetries: 0,
+      maxOutputTokens: 4000,
       abortSignal: request.signal,
     });
     for await (const part of r.fullStream) {
