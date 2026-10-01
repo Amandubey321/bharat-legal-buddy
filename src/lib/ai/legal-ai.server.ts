@@ -1,6 +1,5 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText, type ModelMessage } from "ai";
-import { createLovableAiGatewayRunIdFetch, getLovableAiGatewayRunId } from "./run-id.server";
 
 export type ChatBody = {
   messages: { role: "user" | "assistant"; content: string }[];
@@ -65,7 +64,7 @@ If the matter involves arrest, custody, criminal charges, violence, or deadlines
 End with: "_This is general legal information, not legal advice._"`}`;
 }
 
-/** Streams plain text. Tries the user's Groq key first, falls back to Lovable AI. */
+/** Streams plain text from Groq only. The user's own Groq API key is required. */
 export async function handleLegalChat(request: Request): Promise<Response> {
   let body: ChatBody;
   try {
@@ -76,27 +75,22 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (!Array.isArray(body.messages) || body.messages.length === 0) {
     return new Response("No question provided", { status: 400 });
   }
+  const groqKey = body.groqKey?.trim();
+  if (!groqKey) {
+    return new Response(
+      "No Groq API key set. Open ⚙ AI settings and add your Groq API key (free at console.groq.com).",
+      { status: 401 },
+    );
+  }
+  if (body.attachment?.data) {
+    return new Response(
+      "File upload is not supported with Groq (text-only). Please paste the document text instead.",
+      { status: 415 },
+    );
+  }
   const messages: ModelMessage[] = body.messages
     .slice(-12)
     .map((m) => ({ role: m.role, content: String(m.content).slice(0, 8000) }));
-  const att = body.attachment;
-  if (att?.data) {
-    if (att.data.length > 14_000_000) return new Response("File is too large (max ~10 MB).", { status: 413 });
-    if (!/^(application\/pdf|image\/(png|jpeg|webp))$/.test(att.mediaType)) return new Response("Only PDF, JPG, PNG or WEBP files are supported.", { status: 415 });
-    const last = messages[messages.length - 1];
-    if (last && last.role === "user") {
-      const b64 = att.data.includes(",") ? att.data.split(",")[1]! : att.data;
-      messages[messages.length - 1] = {
-        role: "user",
-        content: [
-          { type: "text", text: String(last.content) },
-          att.mediaType === "application/pdf"
-            ? { type: "file", data: b64, mediaType: att.mediaType, filename: att.name || "document.pdf" }
-            : { type: "image", image: b64, mediaType: att.mediaType },
-        ],
-      };
-    }
-  }
   const system = systemPrompt(body);
 
   const encoder = new TextEncoder();
@@ -116,57 +110,15 @@ export async function handleLegalChat(request: Request): Promise<Response> {
     }
   }
 
-  async function* fromLovable() {
-    const apiKey = process.env["LOVABLE_API_KEY"];
-    if (!apiKey) throw new Error("AI service is not configured.");
-    const runIdFetch = createLovableAiGatewayRunIdFetch(getLovableAiGatewayRunId(request));
-    const provider = createOpenAI({
-      baseURL: "https://ai.gateway.lovable.dev/v1",
-      apiKey,
-      headers: { "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "vercel-ai-sdk" },
-      fetch: runIdFetch.fetch,
-    });
-    const r = streamText({
-      model: provider.responses("openai/gpt-6-astra"),
-      system,
-      messages,
-      maxRetries: 0,
-      abortSignal: request.signal,
-      providerOptions: {
-        openai: {
-          forceReasoning: true,
-          reasoningEffort: "low",
-          reasoningSummary: "auto",
-          store: false,
-          include: ["reasoning.encrypted_content"],
-        },
-      },
-    });
-    for await (const part of r.fullStream) {
-      if (part.type === "error") throw part.error;
-      if (part.type === "text-delta") yield part.text;
-    }
-  }
+  const provider = "Groq";
 
-  // Groq models here are text-only, so files always go to Lovable AI.
-  const groqKey = att?.data ? undefined : body.groqKey?.trim();
-  let provider = groqKey ? "Groq" : "Lovable AI";
-
-  // Pre-fetch the first chunk so we can fall back before headers are sent.
-  let iter: AsyncGenerator<string> = groqKey ? fromGroq(groqKey) : fromLovable();
+  // Pre-fetch the first chunk so key/API errors surface before headers are sent.
+  const iter: AsyncGenerator<string> = fromGroq(groqKey);
   let first: IteratorResult<string>;
   try {
     first = await iter.next();
   } catch (err) {
-    if (!groqKey) return errorResponse(err);
-    console.error("Groq failed, falling back:", err);
-    provider = "Lovable AI (fallback)";
-    iter = fromLovable();
-    try {
-      first = await iter.next();
-    } catch (err2) {
-      return errorResponse(err2);
-    }
+    return errorResponse(err);
   }
 
   const stream = new ReadableStream<Uint8Array>({
@@ -201,14 +153,14 @@ export async function handleLegalChat(request: Request): Promise<Response> {
 
 function errorResponse(err: unknown) {
   const status = (err as { statusCode?: number })?.statusCode ?? 500;
-  console.error("AI error:", err);
+  console.error("Groq error:", err);
   const msg =
-    status === 402
-      ? "AI credits are exhausted. Please add credits in workspace Settings → Plans & credits."
+    status === 401 || status === 403
+      ? "Your Groq API key was rejected. Check the key in ⚙ AI settings (get one at console.groq.com/keys)."
       : status === 429
-        ? "Too many requests right now. Please wait a moment and try again."
-        : status === 403
-          ? "The AI service declined this request."
-          : "The AI service is unavailable right now. Please try again.";
-  return new Response(msg, { status: [402, 403, 429].includes(status) ? status : 500 });
+        ? "Groq rate limit reached. Please wait a moment and try again."
+        : status === 413
+          ? "Your message is too long. Please shorten it and try again."
+          : "Groq is unavailable right now. Please try again.";
+  return new Response(msg, { status: [401, 403, 413, 429].includes(status) ? status : 500 });
 }
