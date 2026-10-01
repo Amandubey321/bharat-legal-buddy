@@ -63,7 +63,7 @@ If the matter involves arrest, custody, criminal charges, violence, or deadlines
 End with: "_This is general legal information, not legal advice._"`}`;
 }
 
-/** Streams plain text from OpenRouter using the server-held OPENROUTER_API_KEY. */
+/** Streams plain text. Tries Groq (server-held GROQ_API_KEY) first, then OpenRouter free models. */
 export async function handleLegalChat(request: Request): Promise<Response> {
   let body: ChatBody;
   try {
