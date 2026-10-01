@@ -1,6 +1,5 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText, type ModelMessage } from "ai";
-import { createLovableAiGatewayRunIdFetch, getLovableAiGatewayRunId } from "./run-id.server";
 
 export type ChatBody = {
   messages: { role: "user" | "assistant"; content: string }[];
@@ -65,7 +64,7 @@ If the matter involves arrest, custody, criminal charges, violence, or deadlines
 End with: "_This is general legal information, not legal advice._"`}`;
 }
 
-/** Streams plain text. Tries the user's Groq key first, falls back to Lovable AI. */
+/** Streams plain text from Groq only. The user's own Groq API key is required. */
 export async function handleLegalChat(request: Request): Promise<Response> {
   let body: ChatBody;
   try {
@@ -76,27 +75,22 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (!Array.isArray(body.messages) || body.messages.length === 0) {
     return new Response("No question provided", { status: 400 });
   }
+  const groqKey = body.groqKey?.trim();
+  if (!groqKey) {
+    return new Response(
+      "No Groq API key set. Open ⚙ AI settings and add your Groq API key (free at console.groq.com).",
+      { status: 401 },
+    );
+  }
+  if (body.attachment?.data) {
+    return new Response(
+      "File upload is not supported with Groq (text-only). Please paste the document text instead.",
+      { status: 415 },
+    );
+  }
   const messages: ModelMessage[] = body.messages
     .slice(-12)
     .map((m) => ({ role: m.role, content: String(m.content).slice(0, 8000) }));
-  const att = body.attachment;
-  if (att?.data) {
-    if (att.data.length > 14_000_000) return new Response("File is too large (max ~10 MB).", { status: 413 });
-    if (!/^(application\/pdf|image\/(png|jpeg|webp))$/.test(att.mediaType)) return new Response("Only PDF, JPG, PNG or WEBP files are supported.", { status: 415 });
-    const last = messages[messages.length - 1];
-    if (last && last.role === "user") {
-      const b64 = att.data.includes(",") ? att.data.split(",")[1]! : att.data;
-      messages[messages.length - 1] = {
-        role: "user",
-        content: [
-          { type: "text", text: String(last.content) },
-          att.mediaType === "application/pdf"
-            ? { type: "file", data: b64, mediaType: att.mediaType, filename: att.name || "document.pdf" }
-            : { type: "image", image: b64, mediaType: att.mediaType },
-        ],
-      };
-    }
-  }
   const system = systemPrompt(body);
 
   const encoder = new TextEncoder();
