@@ -101,6 +101,7 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       messages,
       maxRetries: 0,
       maxOutputTokens: 4000,
+      onError: ({ error }) => { if (!isAbort(error) && !request.signal.aborted) console.error("OpenRouter stream error:", error); },
       abortSignal: request.signal,
     });
     for await (const part of r.fullStream) {
