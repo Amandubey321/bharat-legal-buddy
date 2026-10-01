@@ -144,7 +144,7 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (groqKey) {
     providers.push({
       name: "Groq",
-      iter: fromProvider("https://api.groq.com/openai/v1/chat/completions", groqKey, "llama-3.3-70b-versatile"),
+      iter: fromProvider("https://api.groq.com/openai/v1/chat/completions", groqKey, "openai/gpt-oss-120b"),
     });
   }
   if (openrouterKey) {
