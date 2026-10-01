@@ -62,6 +62,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "NyayaSetu — AI Legal Rights Assistant for India" },
       { property: "og:description", content: "Understand Indian laws and your rights in simple language." },
       { property: "og:type", content: "website" },
+      { name: "author", content: "Aman Dubey" },
+      { property: "og:site_name", content: "NyayaSetu" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
