@@ -96,7 +96,7 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       headers: { "X-Title": "NyayaSetu" },
     });
     const r = streamText({
-      model: or.chat("google/gemma-4-31b-it:free"),
+      model: or.chat("openrouter/free"),
       system,
       messages,
       maxRetries: 0,
