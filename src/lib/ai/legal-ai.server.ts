@@ -64,7 +64,7 @@ If the matter involves arrest, custody, criminal charges, violence, or deadlines
 End with: "_This is general legal information, not legal advice._"`}`;
 }
 
-/** Streams plain text from Groq only. The user's own Groq API key is required. */
+/** Streams plain text from OpenRouter using the server-held OPENROUTER_API_KEY. */
 export async function handleLegalChat(request: Request): Promise<Response> {
   let body: ChatBody;
   try {
@@ -75,18 +75,12 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (!Array.isArray(body.messages) || body.messages.length === 0) {
     return new Response("No question provided", { status: 400 });
   }
-  const groqKey = body.groqKey?.trim();
-  if (!groqKey) {
-    return new Response(
-      "No Groq API key set. Open ⚙ AI settings and add your Groq API key (free at console.groq.com).",
-      { status: 401 },
-    );
+  const apiKey = process.env["OPENROUTER_API_KEY"];
+  if (!apiKey) {
+    return new Response("AI is not configured on the server.", { status: 500 });
   }
   if (body.attachment?.data) {
-    return new Response(
-      "File upload is not supported with Groq (text-only). Please paste the document text instead.",
-      { status: 415 },
-    );
+    return new Response("File upload is not supported. Please paste the document text instead.", { status: 415 });
   }
   const messages: ModelMessage[] = body.messages
     .slice(-12)
@@ -95,10 +89,14 @@ export async function handleLegalChat(request: Request): Promise<Response> {
 
   const encoder = new TextEncoder();
 
-  async function* fromGroq(key: string) {
-    const groq = createOpenAI({ baseURL: "https://api.groq.com/openai/v1", apiKey: key });
+  async function* fromOpenRouter(key: string) {
+    const or = createOpenAI({
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: key,
+      headers: { "X-Title": "NyayaSetu" },
+    });
     const r = streamText({
-      model: groq.chat("llama-3.3-70b-versatile"),
+      model: or.chat("google/gemini-2.5-flash"),
       system,
       messages,
       maxRetries: 0,
@@ -109,8 +107,10 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       if (part.type === "text-delta") yield part.text;
     }
   }
+  const fromGroq = fromOpenRouter;
+  const groqKey = apiKey;
 
-  const provider = "Groq";
+  const provider = "OpenRouter";
 
   // Pre-fetch the first chunk so key/API errors surface before headers are sent.
   const iter: AsyncGenerator<string> = fromGroq(groqKey);
@@ -153,14 +153,16 @@ export async function handleLegalChat(request: Request): Promise<Response> {
 
 function errorResponse(err: unknown) {
   const status = (err as { statusCode?: number })?.statusCode ?? 500;
-  console.error("Groq error:", err);
+  console.error("OpenRouter error:", err);
   const msg =
     status === 401 || status === 403
-      ? "Your Groq API key was rejected. Check the key in ⚙ AI settings (get one at console.groq.com/keys)."
-      : status === 429
-        ? "Groq rate limit reached. Please wait a moment and try again."
-        : status === 413
-          ? "Your message is too long. Please shorten it and try again."
-          : "Groq is unavailable right now. Please try again.";
-  return new Response(msg, { status: [401, 403, 413, 429].includes(status) ? status : 500 });
+      ? "The OpenRouter API key was rejected. Please check the saved key."
+      : status === 402
+        ? "OpenRouter credits are exhausted. Add credits at openrouter.ai."
+        : status === 429
+          ? "Rate limit reached. Please wait a moment and try again."
+          : status === 413
+            ? "Your message is too long. Please shorten it and try again."
+            : "The AI is unavailable right now. Please try again.";
+  return new Response(msg, { status: [401, 402, 403, 413, 429].includes(status) ? status : 500 });
 }
