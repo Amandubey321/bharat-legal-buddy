@@ -29,7 +29,7 @@ function SavedPage() {
       <div className="mx-auto max-w-4xl space-y-4 px-4 py-6">
         {items.length === 0 && (
           <div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground">
-            Nothing saved yet. <Link to="/ask" search={{ q: undefined }} className="underline">Ask a question</Link> and tap "Save".
+            Nothing saved yet. <Link to="/ask" className="underline">Ask a question</Link> and tap "Save".
           </div>
         )}
         {items.map((a) => (
