@@ -6,8 +6,33 @@ export type ChatBody = {
   messages: { role: "user" | "assistant"; content: string }[];
   language: string;
   state: string;
-  mode?: "qa" | "draft";
+  mode?: "qa" | "draft" | "analyze" | "authority" | "timeline";
   groqKey?: string;
+  attachment?: { name: string; mediaType: string; data: string };
+};
+
+const EXTRA_TASKS: Record<string, string> = {
+  analyze: `TASK: Analyse the legal document the user provided (pasted text or attached file). Format (markdown):
+## What this document is
+## Key parties, dates, amounts
+## Main obligations / demands
+## Red flags or risky clauses
+## Deadlines you must not miss
+## What you can do next
+## Relevant law (only if highly confident; else say "the relevant provision")
+If the document is unreadable or not legal, say so. Never assume facts not in the document. End with: "_This is general legal information, not legal advice. Get the document reviewed by an advocate._"`,
+  authority: `TASK: Tell the user which authority/office/forum to approach for their issue in their state. Format (markdown):
+## Where to go first
+## If that doesn't work (escalation)
+## Online portals & helplines (only official ones you are sure of, e.g. cybercrime.gov.in, edaakhil.nic.in, rtionline.gov.in, pgportal.gov.in, ncw.nic.in, nalsa.gov.in; Police 112, Cyber 1930, Women 1091/181, Consumer 1915, Childline 1098, Legal aid 15100)
+## Documents to carry
+Never invent addresses, phone numbers or officer names; tell the user to find the nearest office via the official state website. End with: "_This is general legal information, not legal advice._"`,
+  timeline: `TASK: Explain the typical stages and timeline of the user's case/process in India. Format (markdown):
+## Stages (numbered, each with what happens and a typical time range using "generally/usually")
+## Legal time limits (limitation periods, statutory deadlines — only if highly confident, else say verify)
+## What can cause delays
+## Tips to move faster
+State clearly that real timelines vary widely by court, state and case. Never guarantee time or outcome. End with: "_This is general legal information, not legal advice._"`,
 };
 
 function systemPrompt(b: ChatBody) {
@@ -23,7 +48,7 @@ STRICT CITATION RULES:
 - NEVER invent case names, citations, years, or judgments. Only mention very well-known Supreme Court judgments you are certain about. Otherwise say no specific judgment is cited.
 - Never guarantee an outcome. Use "generally", "usually", "may".
 
-${b.mode === "draft"
+${b.mode && EXTRA_TASKS[b.mode] ? EXTRA_TASKS[b.mode] : b.mode === "draft"
     ? "TASK: Improve the user's legal draft. Keep its structure, fill clear language, keep placeholders in [BRACKETS] where facts are missing. Output only the improved draft text followed by a one-line note: 'Draft for information only — get it reviewed by an advocate before sending.'"
     : `FORMAT (markdown):
 ## Short answer
@@ -54,6 +79,24 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   const messages: ModelMessage[] = body.messages
     .slice(-12)
     .map((m) => ({ role: m.role, content: String(m.content).slice(0, 8000) }));
+  const att = body.attachment;
+  if (att?.data) {
+    if (att.data.length > 14_000_000) return new Response("File is too large (max ~10 MB).", { status: 413 });
+    if (!/^(application\/pdf|image\/(png|jpeg|webp))$/.test(att.mediaType)) return new Response("Only PDF, JPG, PNG or WEBP files are supported.", { status: 415 });
+    const last = messages[messages.length - 1];
+    if (last && last.role === "user") {
+      const b64 = att.data.includes(",") ? att.data.split(",")[1]! : att.data;
+      messages[messages.length - 1] = {
+        role: "user",
+        content: [
+          { type: "text", text: String(last.content) },
+          att.mediaType === "application/pdf"
+            ? { type: "file", data: b64, mediaType: att.mediaType, filename: att.name || "document.pdf" }
+            : { type: "image", image: b64, mediaType: att.mediaType },
+        ],
+      };
+    }
+  }
   const system = systemPrompt(body);
 
   const encoder = new TextEncoder();
@@ -105,7 +148,8 @@ export async function handleLegalChat(request: Request): Promise<Response> {
     }
   }
 
-  const groqKey = body.groqKey?.trim();
+  // Groq models here are text-only, so files always go to Lovable AI.
+  const groqKey = att?.data ? undefined : body.groqKey?.trim();
   let provider = groqKey ? "Groq" : "Lovable AI";
 
   // Pre-fetch the first chunk so we can fall back before headers are sent.
