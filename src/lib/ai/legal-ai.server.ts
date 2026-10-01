@@ -63,7 +63,7 @@ If the matter involves arrest, custody, criminal charges, violence, or deadlines
 End with: "_This is general legal information, not legal advice._"`}`;
 }
 
-/** Streams plain text from OpenRouter using the server-held OPENROUTER_API_KEY. */
+/** Streams plain text. Tries Groq (server-held GROQ_API_KEY) first, then OpenRouter free models. */
 export async function handleLegalChat(request: Request): Promise<Response> {
   let body: ChatBody;
   try {
@@ -74,8 +74,9 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (!Array.isArray(body.messages) || body.messages.length === 0) {
     return new Response("No question provided", { status: 400 });
   }
-  const apiKey = process.env["OPENROUTER_API_KEY"];
-  if (!apiKey) {
+  const groqKey = process.env["GROQ_API_KEY"];
+  const openrouterKey = process.env["OPENROUTER_API_KEY"];
+  if (!groqKey && !openrouterKey) {
     return new Response("AI is not configured on the server.", { status: 500 });
   }
   if (body.attachment?.data) {
@@ -88,14 +89,14 @@ export async function handleLegalChat(request: Request): Promise<Response> {
 
   const encoder = new TextEncoder();
 
-  async function* fromOpenRouter(key: string) {
+  async function* fromProvider(url: string, key: string, model: string) {
     let res: Response;
     try {
-      res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      res = await fetch(url, {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "X-Title": "NyayaSetu" },
         body: JSON.stringify({
-          model: "openrouter/free",
+          model,
           stream: true,
           max_tokens: 4000,
           messages: [{ role: "system", content: system }, ...messages],
@@ -107,7 +108,7 @@ export async function handleLegalChat(request: Request): Promise<Response> {
     }
     if (!res.ok || !res.body) {
       await res.text().catch(() => "");
-      throw Object.assign(new Error(`OpenRouter ${res.status}`), { statusCode: res.status });
+      throw Object.assign(new Error(`AI provider ${res.status}`), { statusCode: res.status });
     }
     const reader = res.body.getReader();
     const dec = new TextDecoder();
@@ -138,21 +139,40 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       reader.cancel().catch(() => {});
     }
   }
-  const fromGroq = fromOpenRouter;
-  const groqKey = apiKey;
-
-  const provider = "OpenRouter";
+  // Try Groq first (user's own key, free tier), then OpenRouter free models.
+  const providers: { name: string; iter: AsyncGenerator<string> }[] = [];
+  if (groqKey) {
+    providers.push({
+      name: "Groq",
+      iter: fromProvider("https://api.groq.com/openai/v1/chat/completions", groqKey, "openai/gpt-oss-120b"),
+    });
+  }
+  if (openrouterKey) {
+    providers.push({
+      name: "OpenRouter",
+      iter: fromProvider("https://openrouter.ai/api/v1/chat/completions", openrouterKey, "openrouter/free"),
+    });
+  }
 
   // Pre-fetch the first chunk so key/API errors surface before headers are sent.
-  const iter: AsyncGenerator<string> = fromGroq(groqKey);
-  let first: IteratorResult<string>;
-  try {
-    first = await iter.next();
-  } catch (err) {
-    // The user pressed Stop or left the page — not an error.
-    if (isAbort(err) || request.signal.aborted) return new Response(null, { status: 499 });
-    return errorResponse(err);
+  let iter: AsyncGenerator<string> | null = null;
+  let first: IteratorResult<string> | null = null;
+  let provider = "";
+  let lastErr: unknown = null;
+  for (const p of providers) {
+    try {
+      const f = await p.iter.next();
+      iter = p.iter;
+      first = f;
+      provider = p.name;
+      break;
+    } catch (err) {
+      if (isAbort(err) || request.signal.aborted) return new Response(null, { status: 499 });
+      lastErr = err;
+      console.error(`${p.name} failed, trying next provider:`, err);
+    }
   }
+  if (!iter || !first) return errorResponse(lastErr);
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
@@ -195,12 +215,12 @@ function isAbort(err: unknown) {
 
 function errorResponse(err: unknown) {
   const status = (err as { statusCode?: number })?.statusCode ?? 500;
-  console.error("OpenRouter error:", err);
+  console.error("AI provider error:", err);
   const msg =
     status === 401 || status === 403
-      ? "The OpenRouter API key was rejected. Please check the saved key."
+      ? "The AI API key was rejected. Please check the saved keys."
       : status === 402
-        ? "OpenRouter credits are exhausted. Add credits at openrouter.ai."
+        ? "AI credits are exhausted. Please try again later."
         : status === 429
           ? "Rate limit reached. Please wait a moment and try again."
           : status === 413
