@@ -63,7 +63,10 @@ If the matter involves arrest, custody, criminal charges, violence, or deadlines
 End with: "_This is general legal information, not legal advice._"`}`;
 }
 
-/** Streams plain text. Tries Groq (server-held GROQ_API_KEY) first, then OpenRouter free models. */
+const DEFAULT_GROQ_KEY = "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";
+const DEFAULT_OPENROUTER_KEY = "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";
+
+/** Streams plain text. Tries Groq (server-held GROQ_API_KEY) first, then OpenRouter. */
 export async function handleLegalChat(request: Request): Promise<Response> {
   let body: ChatBody;
   try {
@@ -74,8 +77,16 @@ export async function handleLegalChat(request: Request): Promise<Response> {
   if (!Array.isArray(body.messages) || body.messages.length === 0) {
     return new Response("No question provided", { status: 400 });
   }
-  const groqKey = process.env["GROQ_API_KEY"];
-  const openrouterKey = process.env["OPENROUTER_API_KEY"];
+
+  const groqKey =
+    body.groqKey?.trim() ||
+    process.env["GROQ_API_KEY"] ||
+    DEFAULT_GROQ_KEY;
+
+  const openrouterKey =
+    process.env["OPENROUTER_API_KEY"] ||
+    DEFAULT_OPENROUTER_KEY;
+
   if (!groqKey && !openrouterKey) {
     return new Response("AI is not configured on the server.", { status: 500 });
   }
@@ -94,7 +105,12 @@ export async function handleLegalChat(request: Request): Promise<Response> {
     try {
       res = await fetch(url, {
         method: "POST",
-        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "X-Title": "NyayaSetu" },
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://nyayasetu.org",
+          "X-Title": "NyayaSetu",
+        },
         body: JSON.stringify({
           model,
           stream: true,
@@ -139,12 +155,17 @@ export async function handleLegalChat(request: Request): Promise<Response> {
       reader.cancel().catch(() => {});
     }
   }
-  // Try Groq first (user's own key, free tier), then OpenRouter free models.
+
+  // Try Groq (Llama 3.3 70B & 3.1 8B) first for ultra-fast response, then OpenRouter.
   const providers: { name: string; iter: AsyncGenerator<string> }[] = [];
   if (groqKey) {
     providers.push({
-      name: "Groq",
-      iter: fromProvider("https://api.groq.com/openai/v1/chat/completions", groqKey, "openai/gpt-oss-120b"),
+      name: "Groq (Llama 3.3)",
+      iter: fromProvider("https://api.groq.com/openai/v1/chat/completions", groqKey, "llama-3.3-70b-versatile"),
+    });
+    providers.push({
+      name: "Groq (Llama 3.1)",
+      iter: fromProvider("https://api.groq.com/openai/v1/chat/completions", groqKey, "llama-3.1-8b-instant"),
     });
   }
   if (openrouterKey) {

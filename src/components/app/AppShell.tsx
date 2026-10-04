@@ -51,17 +51,48 @@ function EmergencyStrip() {
 function SettingsDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
   const s = useSettings();
   const [key, setKey] = useState(s.groqKey);
+
+  const handleSave = () => {
+    s.update({ groqKey: key.trim() });
+    toast.success("AI settings saved");
+    onOpenChange(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={(o) => { if (o) setKey(s.groqKey); onOpenChange(o); }}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2"><KeyRound className="h-5 w-5" /> AI settings</DialogTitle>
+          <DialogTitle className="flex items-center gap-2"><KeyRound className="h-5 w-5" /> AI Settings</DialogTitle>
           <DialogDescription>
-            AI answers are powered by OpenRouter, configured securely on the server. No key is needed from you.
+            Ultra-fast responses powered by Groq AI with automatic OpenRouter fallback.
           </DialogDescription>
         </DialogHeader>
+        <div className="space-y-4 py-2">
+          <div className="rounded-lg border border-border bg-muted/40 p-3 text-xs space-y-1">
+            <div className="flex items-center justify-between font-medium text-foreground">
+              <span>Configured Providers:</span>
+              <span className="text-success font-semibold flex items-center gap-1">● Active</span>
+            </div>
+            <p className="text-muted-foreground">1. <b>Groq AI</b> (Llama 3.3 70B & 3.1 8B — ultra-fast)</p>
+            <p className="text-muted-foreground">2. <b>OpenRouter</b> (Automatic secondary fallback)</p>
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="custom-groq-key" className="text-xs">Optional: Custom Groq API Key</Label>
+            <Input
+              id="custom-groq-key"
+              type="password"
+              placeholder="Leave empty to use built-in server keys"
+              value={key}
+              onChange={(e) => setKey(e.target.value)}
+            />
+            <p className="text-[11px] text-muted-foreground">
+              Built-in API keys are active by default. You can optionally supply your own Groq key here.
+            </p>
+          </div>
+        </div>
         <div className="flex justify-end gap-2">
-          <Button onClick={() => onOpenChange(false)}>OK</Button>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
+          <Button onClick={handleSave}>Save</Button>
         </div>
       </DialogContent>
     </Dialog>
